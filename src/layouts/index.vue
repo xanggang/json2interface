@@ -9,7 +9,7 @@
     >
       <div :class="['logo', {'logo-collapsed': !collapsed}]">
         <router-link to="/" class="logo-lint">
-          <img :src="himoLogo">
+<!--          <img :src="himoLogo">-->
         </router-link>
       </div>
       <a-menu theme="dark" class="menu-content" mode="inline" v-model:selectedKeys="selectedKeys">

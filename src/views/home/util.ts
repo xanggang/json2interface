@@ -1,4 +1,3 @@
-import humps from 'humps'
 // 接口名称
 const interfaceName = ''
 // 直接拼接基本类型
@@ -131,7 +130,7 @@ function parseJson (json: IJson, name: string, inters: string, first = true, ind
     // 判断值类型
     type = typeof json[key]
     if (normalTypes.includes(type)) {
-      inters += `${ind}${key}:${type};\n`
+      inters += `${ind}${key}: ${type};\n`
     } else if (Array.isArray(json[key])) {
       inters = handleArray(json[key] as IArray, key, inters, ind)
     } else if (json[key] instanceof Object) {
@@ -151,10 +150,9 @@ function parseJson (json: IJson, name: string, inters: string, first = true, ind
 /**
  * 导出接口定义
  * @param res json字符串
- * @param exportMode 1 不导出 2 导出 3 导出为默认
  * @returns {*}
  */
-export default function interfaceDefinition (res: string, exportMode = config) {
+export default function interfaceDefinition (res: string) {
   let result
   objs = []
   try {
