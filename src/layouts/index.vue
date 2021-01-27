@@ -10,6 +10,7 @@
       <div :class="['logo', {'logo-collapsed': !collapsed}]">
         <router-link to="/" class="logo-lint">
 <!--          <img :src="himoLogo">-->
+          <span style="color: #fff;">json 转 interface 工具</span>
         </router-link>
       </div>
       <a-menu theme="dark" class="menu-content" mode="inline" v-model:selectedKeys="selectedKeys">

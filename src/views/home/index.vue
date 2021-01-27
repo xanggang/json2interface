@@ -5,7 +5,7 @@
     <a-button @click="foldJson" class="ml-10">格式化json</a-button>
     <h5 class="mt-10" v-if="isErrorJson">JSON数据有误， 请确认</h5>
     <div class="editor-wrap mt-10">
-      <div class="editor-item error">
+      <div class="editor-item" :class="{'error': isErrorJson}">
         <textarea name="" id="JSON-EDITOR" style="width: 100%;height: 100%;" cols="200" rows="500"></textarea>
       </div>
       <div class="editor-item ml-10">
