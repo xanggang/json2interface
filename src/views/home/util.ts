@@ -8,12 +8,6 @@ const interfaceNames: string[] = []
 // 生成的代码缩进 一个tab
 const indent = '  '
 
-const config = {
-  globalPrefix: 'I', // 全局前缀
-  interfaceName: 'default', // 接口名称
-  indent: '&nbsp;&nbsp;&nbsp;&nbsp;' // 生成的代码缩进 一个tab
-}
-
 export interface IJson {
   [key: string]: string | number | boolean | IJson | IArray;
 }

@@ -1,6 +1,6 @@
 import CodeMirror from './import'
 import { Editor as CodeEditorType } from 'codemirror'
-import { onMounted, reactive, onUpdated, toRaw, ref, Ref } from 'vue'
+import { onMounted } from 'vue'
 
 interface IUseCodeEditorType {
   codeEditor?: CodeEditorType | null;
