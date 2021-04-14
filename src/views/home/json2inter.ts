@@ -1,4 +1,4 @@
-import { hasKey, checkIsJson, isBaseType, normalTypes } from './utils'
+import { isBaseType, normalTypes } from './utils'
 import humps from 'humps'
 
 export interface IOption {
