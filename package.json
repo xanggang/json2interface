@@ -1,11 +1,11 @@
 {
-  "name": "order",
+  "name": "json-to-interface",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit1233": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,13 +16,9 @@
     "ant-design-vue": "^2.0.0-rc.8",
     "codemirror": "^5.59.2",
     "core-js": "^3.6.5",
-    "dayjs": "^1.10.3",
     "humps": "^2.0.1",
     "jsoneditor": "^9.1.8",
-    "loadsh": "^0.0.4",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",

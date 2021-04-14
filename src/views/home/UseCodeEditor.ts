@@ -13,10 +13,9 @@ export default function (id: string): IUseCodeEditorType {
   onMounted(() => {
     const dom = document.getElementById(id) as HTMLTextAreaElement
     codeEditor = CodeMirror.fromTextArea(dom, {
-      value: 'const a = 1',
       mode: 'application/json',
       lineNumbers: true,
-      theme: 'eclipse',
+      // theme: 'eclipse',
       tabSize: 2,
       smartIndent: true, // 是否智能缩进
       // keyMap: 'vim',

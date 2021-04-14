@@ -1,13 +1,19 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import store, { key } from './store'
-import 'ant-design-vue/dist/antd.css'
-import Antd from 'ant-design-vue'
 import './style/index.less'
+import Button from 'ant-design-vue/lib/button'
+import Modal from 'ant-design-vue/lib/modal'
+import Switch from 'ant-design-vue/lib/switch'
+import Input from 'ant-design-vue/lib/input'
+import Form from 'ant-design-vue/lib/form'
+import Notification from 'ant-design-vue/lib/notification'
 
-createApp(App)
-  .use(store, key)
-  .use(router)
-  .use(Antd)
-  .mount('#app')
+import 'ant-design-vue/dist/antd.css'
+const app = createApp(App)
+app.use(Button)
+app.use(Modal)
+app.use(Switch)
+app.use(Input)
+app.use(Form)
+app.use(Notification)
+app.mount('#app')

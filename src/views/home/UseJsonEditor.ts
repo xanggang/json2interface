@@ -1,8 +1,8 @@
 import CodeMirror from './import'
 import { Editor as CodeEditorType } from 'codemirror'
-import { onMounted, ref, Ref } from 'vue'
-import interfaceDefinition from '@/views/home/util'
-import humps from 'humps'
+import { onMounted, ref, Ref, reactive, toRaw } from 'vue'
+import Json2inter, { IOption } from './json2inter'
+import { checkJson, getJson, getConfig, setConfig } from './utils'
 
 interface IUseJsonEditorType {
   jsonEditor: CodeEditorType | null;
@@ -10,47 +10,24 @@ interface IUseJsonEditorType {
   foldJson(): void;
   getJsonEditorValue(): string;
   setJson(): void;
-}
-
-function getJson (value: string): object {
-  let jsonString: object = {}
-  try {
-    jsonString = JSON.parse(value)
-  } catch (parseErr) {
-    try {
-      // eslint-disable-next-line no-eval
-      jsonString = eval('(' + value + ')')
-    } catch (evalErr) {
-      jsonString = evalErr.message
-    }
-  }
-  return jsonString
-}
-
-function checkJson (value: string) {
-  try {
-    JSON.parse(value)
-    return false
-  } catch (parseErr) {
-    try {
-      // eslint-disable-next-line no-eval
-      eval('(' + value + ')')
-      return false
-    } catch (evalErr) {
-      return true
-    }
-  }
+  jsonOption: IOption;
+  changeConfig(): void;
 }
 
 export default function (id: string): IUseJsonEditorType {
   let jsonEditor!: CodeEditorType
   const isErrorJson = ref(false)
+
+  const jsonOption = reactive(getConfig())
+
+  const json2interConst = new Json2inter(toRaw(jsonOption))
+
   onMounted(() => {
     const dom = document.getElementById(id) as HTMLTextAreaElement
     jsonEditor = CodeMirror.fromTextArea(dom, {
-      value: 'const a = 1',
+      value: '',
       mode: 'application/json',
-      lineNumbers: true,
+      // lineNumbers: true,
       theme: 'eclipse',
       tabSize: 2,
       smartIndent: true, // 是否智能缩进
@@ -73,7 +50,7 @@ export default function (id: string): IUseJsonEditorType {
   const getJsonEditorValue = () => {
     const value = jsonEditor.getValue()
     const json = getJson(value)
-    return interfaceDefinition(JSON.stringify(humps.camelizeKeys(json)))
+    return json2interConst.interfaceDefinition(json)
   }
 
   const foldJson = () => {
@@ -87,11 +64,22 @@ export default function (id: string): IUseJsonEditorType {
     jsonEditor.setValue('')
   }
 
+  const changeConfig = () => {
+    json2interConst.memberAfterSemicolon = jsonOption.memberAfterSemicolon ? ';' : ''
+    json2interConst.interfaceAfterSemicolon = jsonOption.interfaceAfterSemicolon ? ';' : ''
+    json2interConst.interfacePrefix = jsonOption.interfacePrefix
+    json2interConst.globalName = jsonOption.globalName
+    json2interConst.isExportAll = jsonOption.isExportAll
+    setConfig(jsonOption)
+  }
+
   return {
     jsonEditor,
     isErrorJson,
     foldJson,
     getJsonEditorValue,
-    setJson
+    setJson,
+    jsonOption,
+    changeConfig
   }
 }
